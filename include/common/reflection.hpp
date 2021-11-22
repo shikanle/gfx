@@ -192,6 +192,8 @@ public:
                 ss << "}";
                 return ss.str();
             }
+            default:
+                return "undefined";
         }
     }
 

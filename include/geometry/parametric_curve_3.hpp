@@ -6,6 +6,7 @@
 template <typename float_system>
 class parametric_curve_3 : public parametric_curve<float_system>, public range_space_3<float_system> {
 public:
+    typedef float_system float_system_t;
     typedef typename parametric_curve<float_system>::domain_value_t domain_value_t;
     typedef typename range_space_3<float_system>::vector_t vector_t;
     

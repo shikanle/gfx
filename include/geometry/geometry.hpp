@@ -2,6 +2,7 @@
 
 #define declare_geometry_types(base_type) \
     typedef typename base_type::float_system_t float_system_t; \
+    typedef typename float_system_t::float_t float_t; \
     typedef typename base_type::domain_t domain_t; \
     typedef typename base_type::bounded_domain_t bounded_domain_t; \
     typedef typename base_type::domain_value_t domain_value_t; \
@@ -9,7 +10,7 @@
 
 #define declare_domain(base_type, domain_type) \
     virtual const domain_t &natural_domain() const override { \
-        static domain_type<typename base_type::float_system_t> domain; \
+        static domain_type<float_system_t> domain; \
         return domain; \
     } \
     virtual const domain_t &domain() const override { \

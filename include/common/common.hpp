@@ -11,3 +11,4 @@
 #include <sstream>
 
 #include <stddef.h>
+#include <corecrt_math_defines.h>
