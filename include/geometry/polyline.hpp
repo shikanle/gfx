@@ -20,4 +20,9 @@ public:
 
 public:
     polyline() : points() {}
+
+public:
+    int range_dimension() const {
+        return vector_t::dimension();
+    }
 };
