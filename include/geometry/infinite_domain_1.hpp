@@ -10,7 +10,7 @@ public:
     });
 
 public:
-    virtual bool is_periodic() const override {
+    virtual bool periodic() const override {
         return false;
     }
 };

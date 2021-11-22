@@ -40,4 +40,7 @@ public:
 
 public:
     inline geometry() {}
+
+public:
+    virtual int domain_dimension() const = 0;
 };

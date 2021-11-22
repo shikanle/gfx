@@ -3,9 +3,16 @@
 int main() {
     using namespace gfx::gfx32;
 
-    gfx::gfx32::circle_2 v;
-    std::cout << v << std::endl;
-    std::cout << v.domain() << std::endl;
+    // line_3 l;
+    // l.p0 = { 0, 0, 0 };
+    // l.p1 = { 1, 2, 3 };
+    // std::cout << l.json() << std::endl;
+    // std::cout << l(0.5) << std::endl;
+    // std::cout << l.domain() << std::endl;
+    // std::cout << l.domain().is_bounded() << std::endl;
+
+    bounded_circle_2 c;
+    std::cout << c.json() << std::endl;
 
     // ellipse_3 e = { 3, 4, { {1, 2, 3}, {1, 0, 0}, {0, 1, 0} } };
     // std::cout << e << std::endl;

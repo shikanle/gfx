@@ -14,4 +14,9 @@ public:
     dynamic_reflectible(point, {
         register_super(geometry<float_system>);
     });
+
+public:
+    virtual int domain_dimension() const override {
+        return 0;
+    }
 };

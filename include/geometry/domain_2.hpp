@@ -14,5 +14,5 @@ public:
     });
 
 public:
-    virtual bool is_valid(const vector_t &v) const = 0;
+    virtual bool in(const vector_t &v) const = 0;
 };

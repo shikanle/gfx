@@ -11,7 +11,6 @@ public:
     typedef typename parametric_curve_base::bounded_domain_t bounded_domain_t;
 
 public:
-    geometry_t *geometry;
     bounded_domain_t bounds;
 
     dynamic_reflectible(bounded_parametric_curve, {
@@ -20,16 +19,9 @@ public:
     });
 
 public:
-    bounded_parametric_curve() : geometry(nullptr) {}
-    bounded_parametric_curve(geometry_t *geometry) : geometry(geometry) {
-        // this->bounds = this->geometry->natural_bounded_domain();
-    }
+    bounded_parametric_curve() : bounds() {}
 
 public:
-    virtual const domain_t &natural_domain() const {
-        return this->geometry->natural_domain();
-    }
-
     virtual const domain_t &domain() const {
         return this->bounds;
     }

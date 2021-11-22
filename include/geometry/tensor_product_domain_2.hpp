@@ -20,16 +20,16 @@ public:
     });
 
 public:
-    virtual bool is_valid(const vector_t &v) const {
-        return this->axis_x->is_valid(v.x) &&
-               this->axis_y->is_valid(v.y);
+    virtual bool in(const vector_t &v) const {
+        return this->axis_x->in(v.x) &&
+               this->axis_y->in(v.y);
     }
 
-    virtual bool is_bounded() const {
-        return this->axis_x->is_bounded() && this->axis_y->is_bounded();
+    virtual bool bounded() const {
+        return this->axis_x->bounded() && this->axis_y->bounded();
     }
 
-    virtual bool is_periodic() const {
-        return this->axis_x->is_periodic() || this->axis_y->is_periodic();
+    virtual bool periodic() const {
+        return this->axis_x->periodic() || this->axis_y->periodic();
     }
 };

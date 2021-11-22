@@ -14,5 +14,5 @@ public:
     });
 
 public:
-    virtual bool is_valid(float_t v) const = 0;
+    virtual bool in(float_t v) const = 0;
 };

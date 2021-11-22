@@ -10,6 +10,6 @@ public:
     dynamic_reflectible(domain, {});
 
 public:
-    virtual bool is_bounded() const = 0;
-    virtual bool is_periodic() const = 0;
+    virtual bool bounded() const = 0;
+    virtual bool periodic() const = 0;
 };

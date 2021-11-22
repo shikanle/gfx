@@ -4,34 +4,32 @@
 #include "../math/range_1.hpp"
 
 template <typename float_system>
-class bounded_domain_1 : public domain_1<float_system> {
+class bounded_domain_1 : public domain_1<float_system>, public range_1<float_system> {
 public:
     typedef typename float_system::float_t float_t;
     typedef range_1<float_system> range_t;
 
 public:
-    range_t range;
-
     dynamic_reflectible(bounded_domain_1, {
         register_super(domain_1<float_system>);
-        register_field(range);
+        register_super(range_1<float_system>);
     });
 
 public:
-    inline bounded_domain_1() : range() {}
-    inline bounded_domain_1(const range_t &range) : range(range) {}
-    inline bounded_domain_1(float_t min, float_t max) : range(min, max) {}
+    inline bounded_domain_1() : range_1<float_system>() {}
+    inline bounded_domain_1(const range_t &range) : range_1<float_system>(range) {}
+    inline bounded_domain_1(float_t min, float_t max) : range_1<float_system>(min, max) {}
 
 public:
-    virtual bool is_valid(float_t v) const override {
-        return this->range.in(v);
+    virtual bool in(float_t v) const override {
+        return this->in(v);
     }
 
-    virtual bool is_bounded() const override {
+    virtual bool bounded() const override {
         return true;
     }
 
-    virtual bool is_periodic() const override {
+    virtual bool periodic() const override {
         return false;
     }
 };

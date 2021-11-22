@@ -42,13 +42,15 @@ namespace gfx {
         #include "geometry/circle_3.hpp"
         #include "geometry/ellipse_2.hpp"
         #include "geometry/ellipse_3.hpp"
-        #include "geometry/bounded_parametric_curve_2.hpp"
-        #include "geometry/bounded_parametric_curve_3.hpp"
+        #include "geometry/bounded_parametric_curve.hpp"
 
         #include "algorithm/projection/projection_plane_3.hpp"
     }
 
 #define declare_gfx_class(f, c) typedef generic::c<f> c;
+#define declare_gfx_curve(f, c) \
+    declare_gfx_class(f, c) \
+    typedef generic::bounded_parametric_curve<c> bounded_##c;
 
 #define declare_gtx_classes(name, f) \
     namespace name { \
@@ -78,15 +80,13 @@ namespace gfx {
         declare_gfx_class(f, bounded_domain_2); \
         declare_gfx_class(f, point_2); \
         declare_gfx_class(f, point_3); \
-        declare_gfx_class(f, line_2); \
-        declare_gfx_class(f, line_3); \
-        declare_gfx_class(f, circle_2); \
-        declare_gfx_class(f, circle_3); \
-        declare_gfx_class(f, ellipse_2); \
-        declare_gfx_class(f, ellipse_3); \
+        declare_gfx_curve(f, line_2); \
+        declare_gfx_curve(f, line_3); \
+        declare_gfx_curve(f, circle_2); \
+        declare_gfx_curve(f, circle_3); \
+        declare_gfx_curve(f, ellipse_2); \
+        declare_gfx_curve(f, ellipse_3); \
         declare_gfx_class(f, plane_3); \
-        declare_gfx_class(f, bounded_parametric_curve_2); \
-        declare_gfx_class(f, bounded_parametric_curve_3); \
         declare_gfx_class(f, projection_plane_3); \
         typedef vector_1 vec1; \
         typedef vector_2 vec2; \
