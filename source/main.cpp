@@ -19,7 +19,6 @@ int main() {
     pl.points.push_back({1, 1});
     pl.points.push_back({2, 2});
     std::cout << pl.json() << std::endl;
-  
 
     // std::cout << e << std::endl;
     // std::cout << e(0) << std::endl;

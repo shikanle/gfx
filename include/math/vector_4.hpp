@@ -43,4 +43,7 @@ public:
         return vector_4(float_system_t::zero(), float_system_t::zero(), 
                         float_system_t::zero(), float_system_t::zero());
     }
+    static inline int dimension() {
+        return 4;
+    }
 };

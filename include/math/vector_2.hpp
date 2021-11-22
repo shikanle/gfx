@@ -37,4 +37,7 @@ public:
     static inline vector_2 zero() {
         return vector_2(float_system_t::zero(), float_system_t::zero());
     }
+    static inline int dimension() {
+        return 2;
+    }
 };

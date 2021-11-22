@@ -50,4 +50,8 @@ public:
     inline operator vector_t() const {
         return vector_t(this->x, this->y);
     }
+
+    static inline int dimension() {
+        return 2;
+    }
 };

@@ -59,4 +59,8 @@ public:
     inline operator vector_t() const {
         return vector_t(this->x, this->y, this->z, this->w);
     }
+
+    static inline int dimension() {
+        return 4;
+    }
 };
