@@ -8,6 +8,7 @@
     typedef typename float_system::float_t float_t; \
     typedef vector_2<float_system> vector_t; \
     typedef float_t domain_value_t; \
+    typedef domain_1<float_system> domain_t; \
     typedef typename parametric_curve_2<float_system>::bounded_domain_t bounded_domain_t; \
 
 template <typename float_system>

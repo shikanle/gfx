@@ -3,9 +3,9 @@
 int main() {
     using namespace gfx::gfx32;
 
-    circle_3 v;
+    gfx::gfx32::circle_2 v;
     std::cout << v << std::endl;
-    
+    std::cout << v.domain() << std::endl;
 
     // ellipse_3 e = { 3, 4, { {1, 2, 3}, {1, 0, 0}, {0, 1, 0} } };
     // std::cout << e << std::endl;

@@ -2,6 +2,7 @@
 
 #include "../math/vector_2.hpp"
 #include "parametric_curve_2.hpp"
+#include "circular_domain.hpp"
 
 template <typename float_system>
 class circle : public object {

@@ -16,4 +16,12 @@ public:
     virtual bool is_valid(const vector_t &v) const {
         return true;
     }
+
+    virtual bool is_x_bounded() const override {
+        return false;
+    }
+
+    virtual bool is_y_bounded() const override {
+        return false;
+    }
 };

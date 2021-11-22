@@ -17,6 +17,5 @@ public:
 
 public:
     virtual const domain_t &natural_domain() const = 0;
-    virtual const bounded_domain_t &natural_bounded_domain() const = 0;
     virtual const domain_t &domain() const = 0;
 };

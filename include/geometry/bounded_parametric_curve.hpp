@@ -22,16 +22,12 @@ public:
 public:
     bounded_parametric_curve() : geometry(nullptr) {}
     bounded_parametric_curve(geometry_t *geometry) : geometry(geometry) {
-        this->bounds = this->geometry->natural_bounded_domain();
+        // this->bounds = this->geometry->natural_bounded_domain();
     }
 
 public:
     virtual const domain_t &natural_domain() const {
         return this->geometry->natural_domain();
-    }
-
-    virtual const bounded_domain_t &natural_bounded_domain() const {
-        return this->geometry->natural_bounded_domain();
     }
 
     virtual const domain_t &domain() const {

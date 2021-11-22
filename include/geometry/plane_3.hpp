@@ -2,12 +2,12 @@
 
 #include "../math/unit_vector_3.hpp"
 #include "parametric_surface_3.hpp"
-#include "unbounded_domain_2.hpp"
+#include "infinite_domain_2.hpp"
 
 template<typename float_system>
 class plane_3 : public parametric_surface_3<float_system> {
 public:
-    declare_unbounded_surface(parametric_surface_3<float_system>);
+    declare_infinite_surface(parametric_surface_3<float_system>);
     typedef frame_3<float_system> frame_t;
 
 public:

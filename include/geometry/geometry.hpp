@@ -7,7 +7,7 @@
     typedef typename base_type::domain_value_t domain_value_t; \
     typedef typename base_type::vector_t vector_t
 
-#define declare_unbounded_domain(base_type, domain_type) \
+#define declare_domain(base_type, domain_type) \
     virtual const domain_t &natural_domain() const override { \
         static domain_type<typename base_type::float_system_t> domain; \
         return domain; \
@@ -16,16 +16,17 @@
         return this->natural_domain(); \
     }
 
-#define declare_unbounded_domain_1(base_type) declare_unbounded_domain(base_type, unbounded_domain_1)
-#define declare_unbounded_domain_2(base_type) declare_unbounded_domain(base_type, unbounded_domain_2)
-
-#define declare_unbounded_curve(base_type)  \
+#define declare_infinite_curve(base_type)  \
     declare_geometry_types(base_type); \
-    declare_unbounded_domain_1(base_type)
+    declare_domain(base_type, infinite_domain_1)
 
-#define declare_unbounded_surface(base_type)  \
+#define declare_infinite_surface(base_type)  \
     declare_geometry_types(base_type); \
-    declare_unbounded_domain_2(base_type)
+    declare_domain(base_type, infinite_domain_2)
+
+#define declare_circular_curve(base_type)  \
+    declare_geometry_types(base_type); \
+    declare_domain(base_type, circular_domain)
 
 template <typename float_system>
 class geometry : public object {

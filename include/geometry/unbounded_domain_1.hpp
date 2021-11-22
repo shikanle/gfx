@@ -13,4 +13,8 @@ public:
     virtual bool is_valid(float_t v) const override {
         return true;
     }
+
+    virtual bool is_bounded() const override {
+        return false;
+    }
 };

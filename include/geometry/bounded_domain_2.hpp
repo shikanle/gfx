@@ -22,7 +22,15 @@ public:
     inline bounded_domain_2(const range_t &range) : range(range) {}
 
 public:
-    virtual bool is_valid(const vector_t &v) const {
+    virtual bool is_valid(const vector_t &v) const override {
         return this->range.in(v);
+    }
+
+    virtual bool is_bounded() const override {
+        return true;
+    }
+
+    virtual bool is_periodic() const override {
+        return false;
     }
 };
