@@ -14,6 +14,5 @@ public:
     });
 
 public:
-    virtual const domain_t &natural_domain() const = 0;
     virtual const domain_t &domain() const = 0;
 };

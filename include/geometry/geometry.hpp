@@ -9,12 +9,9 @@
     typedef typename base_type::vector_t vector_t
 
 #define declare_domain(base_type, domain_type) \
-    virtual const domain_t &natural_domain() const override { \
-        static domain_type<float_system_t> domain; \
-        return domain; \
-    } \
     virtual const domain_t &domain() const override { \
-        return this->natural_domain(); \
+        static domain_type<base_type::float_system_t> domain; \
+        return domain; \
     }
 
 #define declare_infinite_curve(base_type)  \

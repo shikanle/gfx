@@ -22,7 +22,11 @@ public:
     segmented_parametric_curve() : bounds() {}
 
 public:
-    virtual const domain_t &domain() const {
+    virtual const domain_t &domain() const override {
         return this->bounds;
+    }
+
+    virtual const domain_t &natural_domain() const {
+        return parametric_curve_base::domain();
     }
 };

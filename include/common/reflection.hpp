@@ -51,7 +51,8 @@ public:
         float32_type,
         float64_type,
         string_type,
-        class_type
+        class_type,
+        array_type
     };
 
     struct primitive_types {
@@ -117,6 +118,8 @@ public:
             case type_kind::float64_type: return "float64";
             case type_kind::string_type: return "string";
             case type_kind::class_type: return "class " + this->name;
+            case type_kind::array_type: return "vector<" + 
+                retrieve(this->fields[0].type_info)->to_string() + ">";
             default: return "<not implemented>";
         }
     }
@@ -151,6 +154,38 @@ public:
             case type_kind::float32_type: return std::to_string(*(const float *)p);
             case type_kind::float64_type: return std::to_string(*(const double *)p);
             case type_kind::string_type: return "\"" + *(const std::string *)p + "\"";
+            case type_kind::array_type: {
+                std::stringstream ss;
+                std::string pref;
+                if (indent > 0) {
+                    pref = std::string(prefix + indent, ' ');
+                }
+                ss << "[";
+                if (indent > 0) {
+                    ss << std::endl;
+                }
+                auto arr = ((std::vector<char> *)p);
+                auto dataptr = arr->data();
+                auto &subtype = this->fields[0].type();
+                auto elsize = this->fields[0].offset;
+                auto allsize = arr->size() / elsize;
+                for (int i = 0; i < allsize; i++) {
+                    ss << pref;
+                    ss << subtype.to_json(dataptr, has_type, indent, prefix + indent);
+                    dataptr += elsize;
+                    if (i + 1 != allsize) {
+                        ss << ",";
+                    }
+                    if (indent > 0) {
+                        ss << std::endl;
+                    }
+                }
+                if (indent > 0) {
+                    ss << std::string(prefix, ' ');
+                }
+                ss << "]";
+                return ss.str();
+            }
             case type_kind::class_type: {
                 std::stringstream ss;
                 std::string pref;
@@ -202,7 +237,7 @@ public:
         ss << this->to_string();
         if (this->kind == type_kind::class_type) {
             ss << " {" << std::endl;
-            for (auto &el : this->fields) {
+            for (auto &el : this->all_fields()) {
                 for (int i = 0; i < indent + 4; i++) {
                     ss << " ";
                 }
@@ -264,18 +299,37 @@ protected:
     }
 
 public:
-    static void expand_field(const int8_t &v) {}
-    static void expand_field(const int16_t &v) {}
-    static void expand_field(const int32_t &v) {}
-    static void expand_field(const int64_t &v) {}
-    static void expand_field(const uint8_t &v) {}
-    static void expand_field(const uint16_t &v) {}
-    static void expand_field(const uint32_t &v) {}
-    static void expand_field(const uint64_t &v) {}
-    static void expand_field(const bool &v) {}
-    static void expand_field(const float &v) {}
-    static void expand_field(const double &v) {}
-    static void expand_field(const std::string &v) {}
+    template <typename T>
+    static const std::type_info *array_element_type(const std::vector<T> &) {
+        return &typeid(T);
+    }
+
+    template <typename T>
+    static const std::type_info *array_element_type(const T &) {
+        return nullptr;
+    }
+
+    static void expand_field(const int8_t &) {}
+    static void expand_field(const int16_t &) {}
+    static void expand_field(const int32_t &) {}
+    static void expand_field(const int64_t &) {}
+    static void expand_field(const uint8_t &) {}
+    static void expand_field(const uint16_t &) {}
+    static void expand_field(const uint32_t &) {}
+    static void expand_field(const uint64_t &) {}
+    static void expand_field(const bool &) {}
+    static void expand_field(const float &) {}
+    static void expand_field(const double &) {}
+    static void expand_field(const std::string &) {}
+    template <typename T>
+    static void expand_field(const std::vector<T> &v) {
+        T val;
+        auto &t = val.type();
+        retrieve("vector<" + t.name + ">", &typeid(std::vector<T>), [](reflection &f) {
+            f.kind = type_kind::array_type;
+            f.fields.push_back({"", sizeof(T), &typeid(T)});
+        });
+    }
     template <typename T>
     static void expand_field(const T &v) {
         v.type();

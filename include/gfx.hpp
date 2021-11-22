@@ -33,16 +33,20 @@ namespace gfx {
 
         #include "geometry/bounded_domain_1.hpp"
         #include "geometry/bounded_domain_2.hpp"
+        #include "geometry/segmented_parametric_curve.hpp"
+
         #include "geometry/point_2.hpp"
         #include "geometry/point_3.hpp"
         #include "geometry/line_2.hpp"
         #include "geometry/line_3.hpp"
-        #include "geometry/plane_3.hpp"
         #include "geometry/circle_2.hpp"
         #include "geometry/circle_3.hpp"
         #include "geometry/ellipse_2.hpp"
         #include "geometry/ellipse_3.hpp"
-        #include "geometry/segmented_parametric_curve.hpp"
+        #include "geometry/plane_3.hpp"
+
+        #include "geometry/polyline_2.hpp"
+        #include "geometry/polyline_3.hpp"
 
         #include "algorithm/projection/projection_plane_3.hpp"
     }
@@ -87,6 +91,8 @@ namespace gfx {
         declare_gfx_curve(f, ellipse_2); \
         declare_gfx_curve(f, ellipse_3); \
         declare_gfx_class(f, plane_3); \
+        declare_gfx_class(f, polyline_2); \
+        declare_gfx_class(f, polyline_3); \
         declare_gfx_class(f, projection_plane_3); \
         typedef vector_1 vec1; \
         typedef vector_2 vec2; \
