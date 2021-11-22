@@ -11,7 +11,7 @@ int main() {
     // std::cout << l.domain() << std::endl;
     // std::cout << l.domain().is_bounded() << std::endl;
 
-    bounded_circle_2 c;
+    ellipse_2 c;
     std::cout << c.json() << std::endl;
 
     // ellipse_3 e = { 3, 4, { {1, 2, 3}, {1, 0, 0}, {0, 1, 0} } };

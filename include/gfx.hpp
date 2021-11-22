@@ -42,7 +42,7 @@ namespace gfx {
         #include "geometry/circle_3.hpp"
         #include "geometry/ellipse_2.hpp"
         #include "geometry/ellipse_3.hpp"
-        #include "geometry/bounded_parametric_curve.hpp"
+        #include "geometry/segmented_parametric_curve.hpp"
 
         #include "algorithm/projection/projection_plane_3.hpp"
     }
@@ -50,7 +50,7 @@ namespace gfx {
 #define declare_gfx_class(f, c) typedef generic::c<f> c;
 #define declare_gfx_curve(f, c) \
     declare_gfx_class(f, c) \
-    typedef generic::bounded_parametric_curve<c> bounded_##c;
+    typedef generic::segmented_parametric_curve<c> segmented_##c;
 
 #define declare_gtx_classes(name, f) \
     namespace name { \
@@ -95,6 +95,10 @@ namespace gfx {
         typedef unit_vector_2 uvec2; \
         typedef unit_vector_3 uvec3; \
         typedef unit_vector_4 uvec4; \
+        typedef segmented_circle_2 circular_arc_2; \
+        typedef segmented_circle_3 circular_arc_3; \
+        typedef segmented_ellipse_2 elliptic_arc_2; \
+        typedef segmented_ellipse_3 elliptic_arc_3; \
     }
     
     declare_gtx_classes(gfx32, float32)

@@ -4,7 +4,7 @@
 #include "parametric_curve.hpp"
 
 template <typename parametric_curve_base>
-class bounded_parametric_curve : public parametric_curve_base {
+class segmented_parametric_curve : public parametric_curve_base {
 public:
     typedef parametric_curve_base geometry_t;
     typedef typename parametric_curve_base::domain_t domain_t;
@@ -13,13 +13,13 @@ public:
 public:
     bounded_domain_t bounds;
 
-    dynamic_reflectible(bounded_parametric_curve, {
+    dynamic_reflectible(segmented_parametric_curve, {
         register_super(parametric_curve_base);
         register_field(bounds);
     });
 
 public:
-    bounded_parametric_curve() : bounds() {}
+    segmented_parametric_curve() : bounds() {}
 
 public:
     virtual const domain_t &domain() const {

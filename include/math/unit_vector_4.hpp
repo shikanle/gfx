@@ -9,13 +9,12 @@ public:
     typedef typename float_system_t::float_t float_t;
     typedef vector_4<float_system> vector_t;
 
-protected:
+public:
     float_t x;
     float_t y;
     float_t z;
     float_t w;
 
-public:
     reflectible(unit_vector_4, {
         register_field(x);
         register_field(y);
