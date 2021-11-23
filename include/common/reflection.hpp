@@ -52,7 +52,8 @@ public:
         float64_type,
         string_type,
         class_type,
-        array_type
+        array_type,
+        enum_type
     };
 
     struct primitive_types {
@@ -117,6 +118,7 @@ public:
             case type_kind::float32_type: return "float32";
             case type_kind::float64_type: return "float64";
             case type_kind::string_type: return "string";
+            case type_kind::enum_type: return "enum";
             case type_kind::class_type: return "class " + this->name;
             case type_kind::array_type: return "vector<" + 
                 retrieve(this->fields[0].type_info)->to_string() + ">";
@@ -154,6 +156,15 @@ public:
             case type_kind::float32_type: return std::to_string(*(const float *)p);
             case type_kind::float64_type: return std::to_string(*(const double *)p);
             case type_kind::string_type: return "\"" + *(const std::string *)p + "\"";
+            case type_kind::enum_type: {
+                switch (this->fields[0].offset) {
+                    case 1: return std::to_string((int64_t)(*((const int8_t *)p)));
+                    case 2: return std::to_string((int64_t)(*((const int16_t *)p)));
+                    case 4: return std::to_string((int64_t)(*((const int32_t *)p)));
+                    case 8: return std::to_string((int64_t)(*((const int64_t *)p)));
+                    default: return "enum";
+                }
+            }
             case type_kind::array_type: {
                 std::stringstream ss;
                 std::string pref;
@@ -335,6 +346,15 @@ public:
         v.type();
     }
 };
+
+#define register_enum(v) { \
+        gfx::reflection::field __f = {#v, (size_t)((char *)&(this->v) - (char *)this), &typeid(this->v)}; \
+        gfx::reflection::retrieve(#v, &typeid(this->v), [this](reflection &f) { \
+            f.kind = gfx::reflection::type_kind::enum_type; \
+            f.fields.push_back({"", sizeof(this->v), &typeid(this->v)}); \
+        }); \
+        __reflection_obj.fields.push_back(__f); \
+    }
 
 #define register_field(v) { \
         gfx::reflection::field __f = {#v, (size_t)((char *)&(this->v) - (char *)this), &typeid(this->v)}; \

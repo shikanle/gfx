@@ -3,8 +3,20 @@
 int main() {
     using namespace gfx::gfx32;
 
-    hyperbolic_arc_3 r;
-    std::cout << r.json() << std::endl;
+    expression exp;
+    expression::node n;
+    n.kind = expression::node::kind_type::add;
+    n.value = 3;
+    exp.nodes.push_back(n);
+    n.kind = expression::node::kind_type::immediate;
+    n.value = 1;
+    exp.nodes.push_back(n);
+    n.value = 2;
+    exp.nodes.push_back(n);
+    std::cout << exp(nullptr) << std::endl;
+
+    // hyperbolic_arc_3 r;
+    // std::cout << r.json() << std::endl;
 
     // ellipse_3 e = { 3, 4, { {1, 2, 3}, {1, 0, 0}, {0, 1, 0} } };
     // std::cout << e.type().to_code() << std::endl;

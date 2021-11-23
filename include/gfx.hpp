@@ -30,6 +30,7 @@ namespace gfx {
         #include "math/euclidean_space_4.hpp"
         #include "math/frame_2.hpp"
         #include "math/frame_3.hpp"
+        #include "math/expression.hpp"
 
         #include "geometry/bounded_domain_1.hpp"
         #include "geometry/bounded_domain_2.hpp"
@@ -84,6 +85,7 @@ namespace gfx {
         declare_gfx_class(f, euclidean_space_4); \
         declare_gfx_class(f, frame_2); \
         declare_gfx_class(f, frame_3); \
+        declare_gfx_class(f, expression); \
         declare_gfx_class(f, bounded_domain_1); \
         declare_gfx_class(f, bounded_domain_2); \
         declare_gfx_class(f, point_2); \
