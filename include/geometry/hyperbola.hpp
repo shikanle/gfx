@@ -5,27 +5,27 @@
 #include "circular_domain.hpp"
 
 template <typename float_system>
-class ellipse : public object {
+class hyperbola : public object {
 public:
     declare_parametric_curve_2_concept_types;
 
 public:
-    float_t a; // radius x
-    float_t b; // radius y
+    float_t a; // transverse_axis;
+    float_t b; // conjugate_axis;
 
-    dynamic_reflectible(ellipse, {
+    dynamic_reflectible(hyperbola, {
         register_field(a);
         register_field(b);
     });
 
 public:
-    inline ellipse() : a(float_system::one()), b(float_system::one()) {}
-    inline ellipse(float_t a, float_t b) : a(a), b(b) {}
+    inline hyperbola() : a(float_system::one()), b(float_system::one()) {}
+    inline hyperbola(float_t a, float_t b) : a(a), b(b) {}
 
 public:
     vector_t operator()(domain_value_t t) const {
         return vector_t(
-            float_system::cos(t) * this->a,
-            float_system::sin(t) * this->b);
+            float_system::cosh(t) * this->a,
+            float_system::sinh(t) * this->b);
     }
 };

@@ -22,7 +22,7 @@ public:
     inline line(const vector_t &p0, const vector_t &p1) : p0(p0), p1(p1) {}
 
 public:
-    virtual vector_t operator()(domain_value_t v) const override {
-        return p0 * (1 - v) + p1 * v;
+    virtual vector_t operator()(domain_value_t t) const override {
+        return p0 * (1 - t) + p1 * t;
     }
 };

@@ -26,5 +26,5 @@ public:
     });
 
 public:
-    virtual vector_t operator()(domain_value_t v) const = 0;
+    virtual vector_t operator()(domain_value_t t) const = 0;
 };

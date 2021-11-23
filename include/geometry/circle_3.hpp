@@ -25,7 +25,7 @@ public:
         circle<float_system>(radius), frame(frame) {}
 
 public:
-    virtual vector_t operator()(domain_value_t v) const override {
-        return this->frame(circle<float_system>::operator()(v));
+    virtual vector_t operator()(domain_value_t t) const override {
+        return this->frame(circle<float_system>::operator()(t));
     }
 };

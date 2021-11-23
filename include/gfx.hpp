@@ -43,6 +43,10 @@ namespace gfx {
         #include "geometry/circle_3.hpp"
         #include "geometry/ellipse_2.hpp"
         #include "geometry/ellipse_3.hpp"
+        #include "geometry/hyperbola_2.hpp"
+        #include "geometry/hyperbola_3.hpp"
+        #include "geometry/parabola_2.hpp"
+        #include "geometry/parabola_3.hpp"
         #include "geometry/plane_3.hpp"
 
         #include "geometry/polyline_2.hpp"
@@ -90,6 +94,10 @@ namespace gfx {
         declare_gfx_curve(f, circle_3); \
         declare_gfx_curve(f, ellipse_2); \
         declare_gfx_curve(f, ellipse_3); \
+        declare_gfx_curve(f, hyperbola_2); \
+        declare_gfx_curve(f, hyperbola_3); \
+        declare_gfx_curve(f, parabola_2); \
+        declare_gfx_curve(f, parabola_3); \
         declare_gfx_class(f, plane_3); \
         declare_gfx_class(f, polyline_2); \
         declare_gfx_class(f, polyline_3); \
@@ -105,6 +113,10 @@ namespace gfx {
         typedef segmented_circle_3 circular_arc_3; \
         typedef segmented_ellipse_2 elliptic_arc_2; \
         typedef segmented_ellipse_3 elliptic_arc_3; \
+        typedef segmented_hyperbola_2 hyperbolic_arc_2; \
+        typedef segmented_hyperbola_3 hyperbolic_arc_3; \
+        typedef segmented_parabola_2 parabolic_arc_2; \
+        typedef segmented_parabola_3 parabolic_arc_3; \
     }
     
     declare_gtx_classes(gfx32, float32)

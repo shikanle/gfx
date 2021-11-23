@@ -23,7 +23,7 @@ public:
         circle<float_system>(radius), center(center) {}
 
 public:
-    virtual vector_t operator()(domain_value_t v) const override {
-        return circle<float_system>::operator()(v) + this->center;
+    virtual vector_t operator()(domain_value_t t) const override {
+        return circle<float_system>::operator()(t) + this->center;
     }
 };

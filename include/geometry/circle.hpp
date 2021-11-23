@@ -21,9 +21,9 @@ public:
     inline circle(float_t radius) : radius(radius) {}
 
 public:
-    vector_t operator()(domain_value_t v) const {
+    vector_t operator()(domain_value_t t) const {
         return vector_t(
-            float_system::cos(v) * this->radius,
-            float_system::sin(v) * this->radius);
+            float_system::cos(t) * this->radius,
+            float_system::sin(t) * this->radius);
     }
 };
