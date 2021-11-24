@@ -11,4 +11,7 @@
 #include <sstream>
 
 #include <stddef.h>
+
+#if defined(WIN32)
 #include <corecrt_math_defines.h>
+#endif

@@ -16,8 +16,8 @@ public:
     });
 
 public:
-    inline bounded_domain_2() : range() {}
-    inline bounded_domain_2(const range_t &range) : range(range) {}
+    inline bounded_domain_2() : range_2<float_system>() {}
+    inline bounded_domain_2(const range_t &range) : range_2<float_system>(range) {}
 
 public:
     virtual bool in(const vector_t &v) const override {

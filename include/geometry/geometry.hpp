@@ -10,7 +10,7 @@
 
 #define declare_domain(base_type, domain_type) \
     virtual const domain_t &domain() const override { \
-        static domain_type<base_type::float_system_t> domain; \
+        static domain_type<typename base_type::float_system_t> domain; \
         return domain; \
     }
 
