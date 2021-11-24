@@ -37,10 +37,19 @@ public:
         register_field(nodes);
     });
 
+public:
+    inline expression() : nodes() {}
+    inline expression(float_t v) : nodes() {
+        this->nodes.push_back({ node::kind_type::immediate, v });
+    }
+    inline expression(typename node::kind_type t, float_t v = float_system_t::zero()) : nodes() {
+        this->nodes.push_back({ t, v });
+    }
+
 protected:
     float_t evaluate(const float *vars, int &i) const {
         #define v this->evaluate(vars, i)
-        auto &o = this->nodes[i++];
+        auto &o = this->nodes[i--];
         float_t retval;
         switch (o.kind) {
             case node::kind_type::immediate: return o.value;
@@ -72,7 +81,7 @@ protected:
             case node::kind_type::round: retval = float_system_t::round(v); break;
             case node::kind_type::ceil: retval = float_system_t::ceil(v); break;
             case node::kind_type::floor: retval = float_system_t::floor(v); break;
-            default: return 0;
+            default: return float_system_t::zero();
         }
         #undef v
         if (o.value != 0) {
@@ -86,7 +95,57 @@ public:
         if (this->nodes.size() == 0) {
             return float_system_t::zero();
         }
-        int i = 0;
+        int i = (int)this->nodes.size() - 1;
         return this->evaluate(vars, i);
     }
+
+    #define declare_expression_binary_op(op, opname) \
+    expression op(const expression &v) const { \
+        expression retval; \
+        for (auto &el : v.nodes) { \
+            retval.nodes.push_back(el); \
+        } \
+        for (auto &el : this->nodes) { \
+            retval.nodes.push_back(el); \
+        } \
+        retval.nodes.push_back({ node::kind_type::opname, 0 }); \
+        return retval; \
+    }
+    declare_expression_binary_op(operator+, add)
+    declare_expression_binary_op(operator-, subtract)
+    declare_expression_binary_op(operator*, multiply)
+    declare_expression_binary_op(operator/, divide)
+    declare_expression_binary_op(operator%, modulo)
+    declare_expression_binary_op(fmod, modulo)
+    declare_expression_binary_op(power, power)
+    #undef declare_expression_binary_op
+
+    #define declare_expression_unitary_op(opname) \
+    expression opname() const { \
+        expression retval; \
+        for (auto &el : this->nodes) { \
+            retval.nodes.push_back(el); \
+        } \
+        retval.nodes.push_back({ node::kind_type::opname, 0 }); \
+        return retval; \
+    }
+    declare_expression_unitary_op(sqrt)
+    declare_expression_unitary_op(exp)
+    declare_expression_unitary_op(log)
+    declare_expression_unitary_op(sin)
+    declare_expression_unitary_op(cos)
+    declare_expression_unitary_op(tan)
+    declare_expression_unitary_op(sinh)
+    declare_expression_unitary_op(cosh)
+    declare_expression_unitary_op(tanh)
+    declare_expression_unitary_op(asin)
+    declare_expression_unitary_op(acos)
+    declare_expression_unitary_op(atan)
+    declare_expression_unitary_op(asinh)
+    declare_expression_unitary_op(acosh)
+    declare_expression_unitary_op(atanh)
+    declare_expression_unitary_op(floor)
+    declare_expression_unitary_op(ceil)
+    declare_expression_unitary_op(round)
+    #undef declare_expression_unitary_op
 };

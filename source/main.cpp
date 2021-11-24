@@ -3,17 +3,22 @@
 int main() {
     using namespace gfx::gfx32;
 
-    expression exp;
-    expression::node n;
-    n.kind = expression::node::kind_type::add;
-    n.value = 3;
-    exp.nodes.push_back(n);
-    n.kind = expression::node::kind_type::immediate;
-    n.value = 1;
-    exp.nodes.push_back(n);
-    n.value = 2;
-    exp.nodes.push_back(n);
-    std::cout << exp(nullptr) << std::endl;
+    expression_curve_2 ec;
+    ec.x = expression(2);
+    ec.y = expression(3);
+    std::cout << ec(0) << std::endl;
+
+    // expression exp;
+    // expression::node n;
+    // n.kind = expression::node::kind_type::immediate;
+    // n.value = 1;
+    // exp.nodes.push_back(n);
+    // n.value = 2;
+    // exp.nodes.push_back(n);
+    // n.kind = expression::node::kind_type::add;
+    // n.value = 1;
+    // exp.nodes.push_back(n);
+    // std::cout << exp(nullptr) << std::endl;
 
     // hyperbolic_arc_3 r;
     // std::cout << r.json() << std::endl;

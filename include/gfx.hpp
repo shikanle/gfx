@@ -31,6 +31,7 @@ namespace gfx {
         #include "math/frame_2.hpp"
         #include "math/frame_3.hpp"
         #include "math/expression.hpp"
+        #include "math/expression_float_system.hpp"
 
         #include "geometry/bounded_domain_1.hpp"
         #include "geometry/bounded_domain_2.hpp"
@@ -48,6 +49,8 @@ namespace gfx {
         #include "geometry/hyperbola_3.hpp"
         #include "geometry/parabola_2.hpp"
         #include "geometry/parabola_3.hpp"
+        #include "geometry/expression_curve_2.hpp"
+        #include "geometry/expression_curve_3.hpp"
         #include "geometry/plane_3.hpp"
 
         #include "geometry/polyline_2.hpp"
@@ -100,6 +103,8 @@ namespace gfx {
         declare_gfx_curve(f, hyperbola_3); \
         declare_gfx_curve(f, parabola_2); \
         declare_gfx_curve(f, parabola_3); \
+        declare_gfx_curve(f, expression_curve_2); \
+        declare_gfx_curve(f, expression_curve_3); \
         declare_gfx_class(f, plane_3); \
         declare_gfx_class(f, polyline_2); \
         declare_gfx_class(f, polyline_3); \
