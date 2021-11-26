@@ -1,12 +1,10 @@
 #include "../include/gfx.hpp"
+#include "../thirdparty/eigen/Eigen/Dense"
 
 int main() {
-    using namespace gfx::gfx32;
+    std::cout << gfx::gfx32::polynomial_equation::solve(1, 3, 1) << std::endl;
 
-    expression_curve_2 ec;
-    ec.x = expression(2);
-    ec.y = expression(3);
-    std::cout << ec(0) << std::endl;
+    // gfx::float32::polynomial_equation p;
 
     // expression exp;
     // expression::node n;

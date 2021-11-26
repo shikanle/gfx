@@ -32,6 +32,8 @@ namespace gfx {
         #include "math/frame_3.hpp"
         #include "math/expression.hpp"
         #include "math/expression_float_system.hpp"
+        #include "math/matrix.hpp"
+        #include "math/polynomial_equation.hpp"
 
         #include "geometry/bounded_domain_1.hpp"
         #include "geometry/bounded_domain_2.hpp"
@@ -89,6 +91,7 @@ namespace gfx {
         declare_gfx_class(f, frame_2); \
         declare_gfx_class(f, frame_3); \
         declare_gfx_class(f, expression); \
+        declare_gfx_class(f, polynomial_equation); \
         declare_gfx_class(f, bounded_domain_1); \
         declare_gfx_class(f, bounded_domain_2); \
         declare_gfx_class(f, point_2); \
@@ -124,6 +127,8 @@ namespace gfx {
         typedef segmented_hyperbola_3 hyperbolic_arc_3; \
         typedef segmented_parabola_2 parabolic_arc_2; \
         typedef segmented_parabola_3 parabolic_arc_3; \
+        template<int row, int column> \
+        using matrix = generic::matrix<f, row, column>; \
     }
     
     declare_gtx_classes(gfx32, float32)
