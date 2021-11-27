@@ -58,8 +58,6 @@ namespace gfx {
 
         #include "geometry/polyline_2.hpp"
         #include "geometry/polyline_3.hpp"
-
-        #include "algorithm/projection/projection_plane_3.hpp"
     }
 
 #define declare_gfx_class(f, c) typedef generic::c<f> c;
@@ -113,7 +111,6 @@ namespace gfx {
         declare_gfx_class(f, plane_3); \
         declare_gfx_class(f, polyline_2); \
         declare_gfx_class(f, polyline_3); \
-        declare_gfx_class(f, projection_plane_3); \
         typedef vector_1 vec1; \
         typedef vector_2 vec2; \
         typedef vector_3 vec3; \
@@ -133,8 +130,8 @@ namespace gfx {
         using matrix = generic::matrix<f, row, column>; \
     }
     
-    declare_gtx_classes(gfx32, float32)
-    declare_gtx_classes(gfx64, float64)
+    declare_gtx_classes(core32, float32)
+    declare_gtx_classes(core64, float64)
 
 #undef declare_gfx_class
 #undef declare_gtx_classes

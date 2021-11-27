@@ -18,4 +18,5 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif()
 
 project(gfx_main)
+include_directories(include)
 add_executable(gfx_main "source/main.cpp")

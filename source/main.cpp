@@ -1,17 +1,16 @@
-#include "../include/gfx.hpp"
-#include "../thirdparty/eigen/Eigen/Dense"
+#include <gfx>
 
 int main() {
     // std::cout << gfx::gfx32::polynomial_equation::solve(1, 3, 1) << std::endl;
 
-    gfx::gfx32::polyline_2 pp;
+    gfx::core32::polyline_2 pp;
     pp.points.push_back({ 1, 2 });
     pp.points.push_back({ 3, 4 });
     std::cout << pp.json() << std::endl;
 
-    gfx::gfx32::vec3 v(1, 2, 3);
+    gfx::core32::vec3 v(1, 2, 3);
 
-    gfx::gfx32::polynomial p(100);
+    gfx::core32::polynomial p(100);
     p.coefficients.push_back(1);
     // p.push_back(10);
     // p.push_back(20);
