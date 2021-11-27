@@ -34,6 +34,7 @@ namespace gfx {
         #include "math/expression_float_system.hpp"
         #include "math/matrix.hpp"
         #include "math/polynomial_equation.hpp"
+        #include "math/polynomial.hpp"
 
         #include "geometry/bounded_domain_1.hpp"
         #include "geometry/bounded_domain_2.hpp"
@@ -92,6 +93,7 @@ namespace gfx {
         declare_gfx_class(f, frame_3); \
         declare_gfx_class(f, expression); \
         declare_gfx_class(f, polynomial_equation); \
+        declare_gfx_class(f, polynomial); \
         declare_gfx_class(f, bounded_domain_1); \
         declare_gfx_class(f, bounded_domain_2); \
         declare_gfx_class(f, point_2); \

@@ -320,30 +320,30 @@ public:
         return nullptr;
     }
 
-    static void expand_field(const int8_t &) {}
-    static void expand_field(const int16_t &) {}
-    static void expand_field(const int32_t &) {}
-    static void expand_field(const int64_t &) {}
-    static void expand_field(const uint8_t &) {}
-    static void expand_field(const uint16_t &) {}
-    static void expand_field(const uint32_t &) {}
-    static void expand_field(const uint64_t &) {}
-    static void expand_field(const bool &) {}
-    static void expand_field(const float &) {}
-    static void expand_field(const double &) {}
-    static void expand_field(const std::string &) {}
+    static inline const reflection *retrieve(const int8_t &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const int16_t &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const int32_t &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const int64_t &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const uint8_t &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const uint16_t &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const uint32_t &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const uint64_t &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const bool &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const float &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const double &v) { return retrieve(&typeid(v)); }
+    static inline const reflection *retrieve(const std::string &v) { return retrieve(&typeid(v)); }
     template <typename T>
-    static void expand_field(const std::vector<T> &v) {
+    static inline const reflection *retrieve(const std::vector<T> &v) {
         T val;
-        auto &t = val.type();
-        retrieve("vector<" + t.name + ">", &typeid(std::vector<T>), [](reflection &f) {
+        auto t = retrieve(val);
+        return retrieve("vector<" + t->name + ">", &typeid(std::vector<T>), [](reflection &f) {
             f.kind = type_kind::array_type;
             f.fields.push_back({"", sizeof(T), &typeid(T)});
         });
     }
     template <typename T>
-    static void expand_field(const T &v) {
-        v.type();
+    static inline const reflection *retrieve(const T &v) {
+        return &(v.type());
     }
 };
 
@@ -358,7 +358,7 @@ public:
 
 #define register_field(v) { \
         gfx::reflection::field __f = {#v, (size_t)((char *)&(this->v) - (char *)this), &typeid(this->v)}; \
-        gfx::reflection::expand_field(this->v); \
+        gfx::reflection::retrieve(this->v); \
         __reflection_obj.fields.push_back(__f); \
     }
 
