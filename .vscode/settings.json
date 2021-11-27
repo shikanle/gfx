@@ -122,6 +122,7 @@
         "*.ipp": "cpp",
         "*.inc": "cpp",
         "*.txx": "cpp",
-        "matrixfunctions": "cpp"
+        "matrixfunctions": "cpp",
+        "all": "cpp"
     }
 }

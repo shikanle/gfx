@@ -3,6 +3,11 @@
 int main() {
     // std::cout << gfx::gfx32::polynomial_equation::solve(1, 3, 1) << std::endl;
 
+    gfx::generic::intersection::line_2_line_2<gfx::float32>::intersect(
+        { { 1, 2 }, { 3, 4 } },
+        { { 1, -2 }, { 3, -4 } });
+
+
     gfx::core32::polyline_2 pp;
     pp.points.push_back({ 1, 2 });
     pp.points.push_back({ 3, 4 });

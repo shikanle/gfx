@@ -1,0 +1,85 @@
+#pragma once
+
+#include "common/all"
+#include "math/all"
+#include "geometry/all"
+#include "intersection/all"
+
+namespace gfx {
+
+#define declare_gfx_class(f, c) typedef generic::c<f> c;
+#define declare_gfx_curve(f, c) \
+    declare_gfx_class(f, c) \
+    typedef generic::segmented_parametric_curve<c> segmented_##c;
+
+#define declare_gtx_classes(name, f) \
+    namespace name { \
+        typedef f float_system_t; \
+        typedef f::float_t float_t; \
+        declare_gfx_class(f, vector_0); \
+        declare_gfx_class(f, vector_1); \
+        declare_gfx_class(f, vector_2); \
+        declare_gfx_class(f, vector_3); \
+        declare_gfx_class(f, vector_4); \
+        declare_gfx_class(f, unit_vector_2); \
+        declare_gfx_class(f, unit_vector_3); \
+        declare_gfx_class(f, unit_vector_4); \
+        declare_gfx_class(f, range_1); \
+        declare_gfx_class(f, range_2); \
+        declare_gfx_class(f, linear_space_2); \
+        declare_gfx_class(f, linear_space_3); \
+        declare_gfx_class(f, linear_space_4); \
+        declare_gfx_class(f, euclidean_space_0); \
+        declare_gfx_class(f, euclidean_space_1); \
+        declare_gfx_class(f, euclidean_space_2); \
+        declare_gfx_class(f, euclidean_space_3); \
+        declare_gfx_class(f, euclidean_space_4); \
+        declare_gfx_class(f, frame_2); \
+        declare_gfx_class(f, frame_3); \
+        declare_gfx_class(f, expression); \
+        declare_gfx_class(f, polynomial_equation); \
+        declare_gfx_class(f, polynomial); \
+        declare_gfx_class(f, bounded_domain_1); \
+        declare_gfx_class(f, bounded_domain_2); \
+        declare_gfx_class(f, point_2); \
+        declare_gfx_class(f, point_3); \
+        declare_gfx_curve(f, line_2); \
+        declare_gfx_curve(f, line_3); \
+        declare_gfx_curve(f, circle_2); \
+        declare_gfx_curve(f, circle_3); \
+        declare_gfx_curve(f, ellipse_2); \
+        declare_gfx_curve(f, ellipse_3); \
+        declare_gfx_curve(f, hyperbola_2); \
+        declare_gfx_curve(f, hyperbola_3); \
+        declare_gfx_curve(f, parabola_2); \
+        declare_gfx_curve(f, parabola_3); \
+        declare_gfx_curve(f, expression_curve_2); \
+        declare_gfx_curve(f, expression_curve_3); \
+        declare_gfx_class(f, plane_3); \
+        declare_gfx_class(f, polyline_2); \
+        declare_gfx_class(f, polyline_3); \
+        typedef vector_1 vec1; \
+        typedef vector_2 vec2; \
+        typedef vector_3 vec3; \
+        typedef vector_4 vec4; \
+        typedef unit_vector_2 uvec2; \
+        typedef unit_vector_3 uvec3; \
+        typedef unit_vector_4 uvec4; \
+        typedef segmented_circle_2 circular_arc_2; \
+        typedef segmented_circle_3 circular_arc_3; \
+        typedef segmented_ellipse_2 elliptic_arc_2; \
+        typedef segmented_ellipse_3 elliptic_arc_3; \
+        typedef segmented_hyperbola_2 hyperbolic_arc_2; \
+        typedef segmented_hyperbola_3 hyperbolic_arc_3; \
+        typedef segmented_parabola_2 parabolic_arc_2; \
+        typedef segmented_parabola_3 parabolic_arc_3; \
+        template<int row, int column> \
+        using matrix = generic::matrix<f, row, column>; \
+    }
+    
+    declare_gtx_classes(core32, float32)
+    declare_gtx_classes(core64, float64)
+
+#undef declare_gfx_class
+#undef declare_gtx_classes
+}

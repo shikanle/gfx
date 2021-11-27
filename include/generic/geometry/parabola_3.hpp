@@ -1,0 +1,37 @@
+#pragma once
+
+#include "parabola.hpp"
+#include "parametric_curve_3.hpp"
+#include "../math/frame_3.hpp"
+
+namespace gfx {
+namespace generic {
+
+template <typename float_system>
+class parabola_3 : public parametric_curve_3<float_system>, public parabola<float_system> {
+public:
+    declare_circular_curve(parametric_curve_3<float_system>);
+    typedef frame_3<float_system> frame_t;
+
+public:
+    frame_t frame;
+
+    dynamic_reflectible(parabola_3, {
+        register_super(parametric_curve_3<float_system>);
+        register_super(parabola<float_system>);
+        register_field(frame);
+    });
+
+public:
+    inline parabola_3() : parabola<float_system>(), frame() {}
+    inline parabola_3(float_t p, const frame_t &frame) : 
+        parabola<float_system>(p), frame(frame) {}
+
+public:
+    virtual vector_t operator()(domain_value_t t) const override {
+        return this->frame(parabola<float_system>::operator()(t));
+    }
+};
+
+}
+}

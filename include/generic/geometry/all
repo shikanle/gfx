@@ -1,0 +1,24 @@
+#pragma once
+
+#include "bounded_domain_1.hpp"
+#include "bounded_domain_2.hpp"
+#include "segmented_parametric_curve.hpp"
+
+#include "point_2.hpp"
+#include "point_3.hpp"
+#include "line_2.hpp"
+#include "line_3.hpp"
+#include "circle_2.hpp"
+#include "circle_3.hpp"
+#include "ellipse_2.hpp"
+#include "ellipse_3.hpp"
+#include "hyperbola_2.hpp"
+#include "hyperbola_3.hpp"
+#include "parabola_2.hpp"
+#include "parabola_3.hpp"
+#include "expression_curve_2.hpp"
+#include "expression_curve_3.hpp"
+#include "plane_3.hpp"
+
+#include "polyline_2.hpp"
+#include "polyline_3.hpp"
